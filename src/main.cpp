@@ -13,3 +13,11 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+#include <iostream>
+#include "CLI11.hpp"
+
+int main(int argc, char** argv) {
+    return 0;
+}
