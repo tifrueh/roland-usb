@@ -1,5 +1,5 @@
 SRCS = main.cpp nameconverter.cpp
-OJBS = $(subst .cpp,.o,$(SRCS))
+OBJS = $(subst .cpp,.o,$(SRCS))
 
 CXX ?= g++
 CPPFLAGS ?= -I./include
