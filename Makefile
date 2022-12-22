@@ -3,7 +3,7 @@ OBJS = $(subst .cpp,.o,$(SRCS))
 
 CXX ?= g++
 CPPFLAGS ?= -I./include
-CXXFLAGS ?= -std=c++11
+CXXFLAGS ?= -std=c++20
 LDFLAGS ?=
 
 DESTDIR ?= /usr/local
