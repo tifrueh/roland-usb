@@ -1,4 +1,4 @@
-SRCS = main.cpp
+SRCS = main.cpp nameconverter.cpp
 OJBS = $(subst .cpp,.o,$(SRCS))
 
 CXX ?= g++
@@ -20,6 +20,9 @@ $(TARGET) : $(OBJS)
 
 main.o : src/main.cpp
 	$(MAKE_OBJ) src/main.cpp
+
+nameconverter.o : src/nameconverter.cpp
+	$(MAKE_OBJ) src/nameconverter.cpp
 
 
 .PHONY : clean distclean install uninstall
