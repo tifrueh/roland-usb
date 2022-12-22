@@ -17,7 +17,7 @@
 
 #include <iostream>
 #include "CLI11.hpp"
-#include "nameconverter.hpp"
+#include "nameconversion.hpp"
 
 int main(int argc, char** argv) {
     return 0;

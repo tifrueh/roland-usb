@@ -1,4 +1,4 @@
-SRCS = main.cpp nameconverter.cpp
+SRCS = main.cpp nameconversion.cpp
 OBJS = $(subst .cpp,.o,$(SRCS))
 
 CXX ?= g++
@@ -22,8 +22,8 @@ $(TARGET) : $(OBJS)
 main.o : src/main.cpp
 	$(MAKE_OBJ) src/main.cpp
 
-nameconverter.o : src/nameconverter.cpp
-	$(MAKE_OBJ) src/nameconverter.cpp
+nameconversion.o : src/nameconversion.cpp
+	$(MAKE_OBJ) src/nameconversion.cpp
 
 
 .PHONY : clean distclean install uninstall

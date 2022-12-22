@@ -7,7 +7,7 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
-#include "nameconverter.hpp"
+#include "nameconversion.hpp"
 
 std::vector<std::string> rnc::parseTitlesCSV(const std::filesystem::path& titlesCSVPath) {
     
