@@ -14,6 +14,7 @@ TARGET = roland-usb
 MAKE_OBJ = $(CXX) $(CPPFLAGS) $(CXXFLAGS) -c
 MAKE_LINK = $(CXX) $(LDFLAGS) -o $(TARGET)
 
+all : $(TARGET)
 
 $(TARGET) : $(OBJS)
 	$(MAKE_LINK) $(OBJS)
