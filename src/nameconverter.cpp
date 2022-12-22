@@ -93,3 +93,31 @@ void rnc::bulkRename(const std::filesystem::path& directory, const std::vector<s
         std::filesystem::rename(fromPath, toPath);
     }
 }
+
+void rnc::initRolandUSB(const std::filesystem::path& directory) {
+
+    if (!std::filesystem::is_directory(directory)) {
+        throw std::invalid_argument(directory.string() + " is not a directory");
+    }
+
+    std::filesystem::path titlesCONF = directory / "titles.conf";
+
+    if (std::filesystem::is_regular_file(titlesCONF)) {
+        throw std::invalid_argument(titlesCONF.string() + " exists already");
+    }
+    
+    std::ofstream ofile;
+    ofile.open(titlesCONF);
+
+    for (std::filesystem::path file : std::filesystem::directory_iterator(directory)) {
+
+        std::string filename = file.filename();
+        std::string ext = ".wav";
+
+        if (filename.find(ext) != std::string::npos) {
+            ofile << filename << std::endl;
+        }
+    }
+
+    ofile.close();
+}

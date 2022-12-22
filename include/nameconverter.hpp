@@ -22,4 +22,7 @@ namespace rnc {
     void bulkRename(const std::filesystem::path& directory, 
                     const std::vector<std::string>& from, 
                     const std::vector<std::string>& to);
+
+    // initialise folder with a titles.conf file
+    void initRolandUSB(const std::filesystem::path& directory);
 }
