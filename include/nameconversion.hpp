@@ -6,7 +6,7 @@
 #include <string>
 #include <filesystem>
 
-// namespace: roland nameconverter
+// namespace: roland nameconversion
 namespace rnc {
 
     // returns a vector containing all the lines of a titles.csv file
