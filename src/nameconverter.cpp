@@ -30,9 +30,9 @@ std::string rnc::createRolandName(const int& index) {
     
     int insertionPos;
     std::string name;
-    std::string sIndex;
-    std::string insertionCharacter;
-    
+
+    std::string sIndex = std::to_string(index);
+    std::string insertionCharacter = "%";
     std::string nameTemplates[3] = { "R068_%.wav", "R068_0%.wav" , "R068_00%.wav" };
 
     if (index > 99) {
@@ -47,9 +47,6 @@ std::string rnc::createRolandName(const int& index) {
     else {
         throw std::invalid_argument("Roland name index must be between 1 and 999");
     } 
-
-    insertionCharacter = "%";
-    sIndex = std::to_string(index);
 
     insertionPos = name.find(insertionCharacter);
 
