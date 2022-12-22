@@ -7,12 +7,12 @@
 #include <fstream>
 #include "nameconverter.hpp"
 
-std::vector<std::string> rnc::parseTitlesCSV(const std::string& titlesCsvPath) {
+std::vector<std::string> rnc::parseTitlesCSV(const std::string& titlesCSVPath) {
     
     std::string line;
 
     std::ifstream ifile;
-    ifile.open(titlesCsvPath);
+    ifile.open(titlesCSVPath);
 
     std::vector<std::string> titlesVector;
 

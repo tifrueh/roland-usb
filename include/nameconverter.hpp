@@ -9,5 +9,5 @@
 namespace rnc {
 
     // returns a vector containing all the lines of a titles.csv file
-    std::vector<std::string> parseTitlesCSV(const std::string& titlesCsvPath);
+    std::vector<std::string> parseTitlesCSV(const std::string& titlesCSVPath);
 }
