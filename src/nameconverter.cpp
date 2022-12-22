@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include <algorithm>
 #include "nameconverter.hpp"
 
 std::vector<std::string> rnc::parseTitlesCSV(const std::string& titlesCSVPath) {
