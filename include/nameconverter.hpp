@@ -17,4 +17,9 @@ namespace rnc {
 
     // returns a vector containing Roland names spanning a given range
     std::vector<std::string> createRolandNameVector(const int& start, const int& end);
+
+    // rename multiple files based on two vectors
+    void bulkRename(const std::filesystem::path& directory, 
+                    const std::vector<std::string>& from, 
+                    const std::vector<std::string>& to);
 }

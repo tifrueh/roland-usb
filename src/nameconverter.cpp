@@ -2,6 +2,7 @@
 // Full copyright notice in main.cpp
 
 
+#include <iostream>
 #include <vector>
 #include <string>
 #include <fstream>
@@ -64,4 +65,31 @@ std::vector<std::string> rnc::createRolandNameVector(const int& start, const int
     }
 
     return nameVector;
+}
+
+void rnc::bulkRename(const std::filesystem::path& directory, const std::vector<std::string>& from, const std::vector<std::string>& to) {
+
+    if (!std::filesystem::is_directory(directory)) {
+        throw std::invalid_argument(directory.string() + " is not a directory");
+    }
+    if (from.size() != to.size()) {
+        throw std::invalid_argument("both vectors 'from' and 'to' have to be of the same size");
+    }
+
+    std::filesystem::path fromPath;
+    std::filesystem::path toPath;
+
+    for (int i = 0; i < from.size(); i++) {
+
+        fromPath = directory / from.at(i);
+
+        if (!std::filesystem::is_regular_file(fromPath)) {
+            std::cout << fromPath.string() << " not found, skipping ...";
+            break;
+        }
+
+        toPath = directory / to.at(i);
+
+        std::filesystem::rename(fromPath, toPath);
+    }
 }
