@@ -5,4 +5,6 @@
 #include <vector>
 #include <string>
 
-namespace rnc {}
+namespace rnc {
+    std::vector<std::string> parseTitlesCSV(const std::string& titlesCsvPath);
+}
