@@ -57,3 +57,14 @@ std::string rnc::createRolandName(const int& index) {
 
     return name;
 }
+
+std::vector<std::string> rnc::createRolandNameVector(const int& start, const int& end) {
+    
+    std::vector<std::string> nameVector;
+
+    for (int i = start; i <= end; i++) {
+        nameVector.push_back(rnc::createRolandName(i));
+    }
+
+    return nameVector;
+}

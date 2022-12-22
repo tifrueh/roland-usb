@@ -13,4 +13,7 @@ namespace rnc {
 
     // returns a name based on a number which the FP-30 can understand
     std::string createRolandName(const int& index);
+
+    // returns a vector containing Roland names spanning a given range
+    std::vector<std::string> createRolandNameVector(const int& start, const int& end);
 }
