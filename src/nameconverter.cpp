@@ -31,9 +31,9 @@ std::string rnc::createRolandName(const int& index) {
     int insertionPos;
     std::string name;
 
-    std::string sIndex = std::to_string(index);
-    std::string insertionCharacter = "%";
-    std::string nameTemplates[3] = { "R068_%.wav", "R068_0%.wav" , "R068_00%.wav" };
+    const std::string sIndex = std::to_string(index);
+    const std::string insertionCharacter = "%";
+    const std::string nameTemplates[3] = { "R068_%.wav", "R068_0%.wav" , "R068_00%.wav" };
 
     if (index > 99) {
         name = nameTemplates[0];
