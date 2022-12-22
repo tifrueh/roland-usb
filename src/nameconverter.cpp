@@ -20,5 +20,7 @@ std::vector<std::string> rnc::parseTitlesCSV(const std::string& titlesCSVPath) {
             titlesVector.push_back(line);
     }
 
+    ifile.close();
+
     return titlesVector;
 }
