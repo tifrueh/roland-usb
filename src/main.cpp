@@ -19,6 +19,7 @@
 #include "CLI11.hpp"
 #include "nameconversion.hpp"
 #include "usb.hpp"
+#include "subcommands.hpp"
 
 int main(int argc, char** argv) {
     return 0;
