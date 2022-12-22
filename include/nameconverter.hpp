@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <filesystem>
 
 // namespace: roland nameconverter
 namespace rnc {
