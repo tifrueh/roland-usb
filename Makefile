@@ -2,9 +2,12 @@ SRCS = main.cpp nameconversion.cpp usb.cpp subcommands.cpp
 OBJS = $(subst .cpp,.o,$(SRCS))
 
 CXX ?= g++
-CPPFLAGS ?= -I./include
-CXXFLAGS ?= -std=c++20
+CPPFLAGS ?=
+CXXFLAGS ?=
 LDFLAGS ?=
+
+override CPPFLAGS += -I./include
+override CXXFLAGS += -std=c++20
 
 DESTDIR ?= /usr/local
 DESTDIR_BIN ?= $(DESTDIR)/bin
@@ -12,7 +15,12 @@ DESTDIR_BIN ?= $(DESTDIR)/bin
 TARGET = roland-usb
 
 MAKE_OBJ = $(CXX) $(CPPFLAGS) $(CXXFLAGS) -c
-MAKE_LINK = $(CXX) $(LDFLAGS) -o $(TARGET)
+
+ifeq ($(LDFLAGS), )
+	MAKE_LINK = $(CXX) -o $(TARGET)
+else
+	MAKE_LINK = $(CXX) $(LDFLAGS) -o $(TARGET)
+endif
 
 all : $(TARGET)
 
