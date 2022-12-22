@@ -1,4 +1,4 @@
-SRCS = main.cpp nameconversion.cpp
+SRCS = main.cpp nameconversion.cpp usb.cpp
 OBJS = $(subst .cpp,.o,$(SRCS))
 
 CXX ?= g++
@@ -24,6 +24,9 @@ main.o : src/main.cpp
 
 nameconversion.o : src/nameconversion.cpp
 	$(MAKE_OBJ) src/nameconversion.cpp
+
+usb.o : src/usb.cpp
+	$(MAKE_OBJ) src/usb.cpp
 
 
 .PHONY : clean distclean install uninstall
