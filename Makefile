@@ -43,10 +43,10 @@ subcommands.o : src/subcommands.cpp
 .PHONY : clean distclean install uninstall
 
 clean : 
-	rm $(OBJS)
+	-rm $(OBJS)
 
 distclean : 
-	rm $(TARGET)
+	-rm $(TARGET)
 
 install : $(TARGET)
 	@install -d $(DESTDIR_BIN)
