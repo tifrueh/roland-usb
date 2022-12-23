@@ -64,14 +64,13 @@ void rnc::bulkRename(const std::filesystem::path& directory, const std::vector<s
     for (int i = 0; i < from.size(); i++) {
 
         fromPath = directory / from.at(i);
-
-        if (!std::filesystem::is_regular_file(fromPath)) {
-            std::cout << fromPath.string() << " not found, skipping ..." << std::endl;
-            break;
-        }
-
         toPath = directory / to.at(i);
 
-        std::filesystem::rename(fromPath, toPath);
+        if (!std::filesystem::is_regular_file(fromPath)) {
+            std::cerr << fromPath.string() << " not found, skipping ..." << std::endl;
+        }
+        else {
+            std::filesystem::rename(fromPath, toPath);
+        }
     }
 }
