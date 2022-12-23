@@ -3,10 +3,23 @@
 
 
 #include <filesystem>
+#include <iostream>
 #include "subcommands.hpp"
+#include "nameconversion.hpp"
+#include "usb.hpp"
 
 void scmd::init(const std::filesystem::path& directory) {
-    return;
+    
+    try
+    {
+        std::cout << "Initialising directory ..." << std::endl;
+        rusb::initRolandUSB(directory);
+        std::cout << "Directory " << directory.string() << " initialised" << std::endl;
+    }
+    catch(const std::invalid_argument& e)
+    {
+        std::cerr << "[ERROR]: " << e.what() << std::endl;
+    }
 }
 
 void scmd::encrypt(const std::filesystem::path& directory) {
