@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     app.require_subcommand(1, 1);
 
     CLI11_PARSE(app, argc, argv);
-    
+
     std::filesystem::path targetDirectory = sTargetDirectory;
 
     if (*scmdInit) {
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     else if (*scmdEncrypt) {
         scmd::encrypt(targetDirectory);
     }
-    else if (*scmdInit) {
+    else if (*scmdDecrypt) {
         scmd::decrypt(targetDirectory);
     }
     else {
