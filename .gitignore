@@ -41,3 +41,6 @@
 
 # executable
 roland-usb
+
+# "mock-usb-directory" for testing
+testdir
