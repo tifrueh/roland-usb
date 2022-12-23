@@ -55,7 +55,7 @@ void rnc::bulkRename(const std::filesystem::path& directory, const std::vector<s
         throw std::invalid_argument(directory.string() + " does not exist or is no directory");
     }
     if (from.size() != to.size()) {
-        throw std::invalid_argument("both vectors 'from' and 'to' have to be of the same size");
+        throw std::logic_error("both vectors 'from' and 'to' have to be of the same size");
     }
 
     std::filesystem::path fromPath;
