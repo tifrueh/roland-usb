@@ -100,6 +100,7 @@ void scmd::decrypt(const std::filesystem::path& directory) {
         rolandNames = rnc::createRolandNameVector(1, titles.size());
         rnc::bulkRename(directory, rolandNames, titles);
         std::filesystem::rename(hiddenTitlesCONF, titlesCONF);
+        break;
 
     case 3:
         std::cerr << "[ERROR]: " << directory.string() << " is broken (titles.conf and .titles.conf present)" << std::endl;
