@@ -30,7 +30,6 @@ int main(int argc, char** argv) {
 
     std::string sTargetDirectory;
     app.add_option("-d,--directory", sTargetDirectory, "Target directory")->required();
-    std::filesystem::path targetDirectory = sTargetDirectory;
 
     CLI::App* scmdInit = app.add_subcommand("init", "Initialise target directory");
     CLI::App* scmdEncrypt = app.add_subcommand("encrypt", "Rename .wav files in target directory to FP-30 readable names");
@@ -38,6 +37,8 @@ int main(int argc, char** argv) {
     app.require_subcommand(1, 1);
 
     CLI11_PARSE(app, argc, argv);
+    
+    std::filesystem::path targetDirectory = sTargetDirectory;
 
     if (*scmdInit) {
         scmd::init(targetDirectory);
