@@ -38,7 +38,6 @@ int main(int argc, char** argv) {
     app.require_subcommand(1, 1);
 
     CLI11_PARSE(app, argc, argv);
-    return 0;
 
     if (*scmdInit) {
         scmd::init(targetDirectory);
@@ -52,4 +51,6 @@ int main(int argc, char** argv) {
     else {
         throw std::logic_error("no valid subcommand given");
     }
+    
+    return 0;
 }
