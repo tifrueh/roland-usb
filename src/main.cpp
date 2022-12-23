@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     app.set_version_flag("-v,--version", VERSION, "Print version and exit");
 
     std::string sTargetDirectory;
-    app.add_option("-d,--directory", sTargetDirectory, "Target directory");
+    app.add_option("-d,--directory", sTargetDirectory, "Target directory")->required();
     std::filesystem::path targetDirectory = sTargetDirectory;
 
     CLI::App* scmdInit = app.add_subcommand("init", "Initialise target directory");
@@ -51,6 +51,6 @@ int main(int argc, char** argv) {
     else {
         throw std::logic_error("no valid subcommand given");
     }
-    
+
     return 0;
 }
