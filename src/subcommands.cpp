@@ -4,6 +4,7 @@
 
 #include <filesystem>
 #include <iostream>
+#include <vector>
 #include "subcommands.hpp"
 #include "nameconversion.hpp"
 #include "usb.hpp"
@@ -23,7 +24,20 @@ void scmd::init(const std::filesystem::path& directory) {
 }
 
 void scmd::encrypt(const std::filesystem::path& directory) {
-    return;
+    
+    std::filesystem::path titlesCONF = directory / "titles.conf";
+
+    if (!std::filesystem::is_directory(directory)) {
+        std::cerr << "[ERROR]: " << directory.string() << " does not exist or is no directory"<< std::endl;
+    }
+    else if (!std::filesystem::is_regular_file(titlesCONF)) {
+        std::cerr << "[ERROR]: " << directory.string() << " is not initialised";
+    }
+
+    std::vector<std::string> titles = rusb::parseTitlesCSV(titlesCONF);
+    std::vector<std::string> rolandNames = rnc::createRolandNameVector(1, titles.size());
+
+    rnc::bulkRename(directory, titles, rolandNames);
 }
 
 void scmd::decrypt(const std::filesystem::path& directory) {
