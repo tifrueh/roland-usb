@@ -52,7 +52,7 @@ std::vector<std::string> rnc::createRolandNameVector(const int& start, const int
 void rnc::bulkRename(const std::filesystem::path& directory, const std::vector<std::string>& from, const std::vector<std::string>& to) {
 
     if (!std::filesystem::is_directory(directory)) {
-        throw std::invalid_argument(directory.string() + " is not a directory");
+        throw std::invalid_argument(directory.string() + " does not exist or is no directory");
     }
     if (from.size() != to.size()) {
         throw std::invalid_argument("both vectors 'from' and 'to' have to be of the same size");
