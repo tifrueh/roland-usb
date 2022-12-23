@@ -10,10 +10,18 @@
 #include "usb.hpp"
 
 void scmd::init(const std::filesystem::path& directory) {
+
+    std::filesystem::path titlesCONF = directory / "titles.conf";
+
+    if (!std::filesystem::is_regular_file(titlesCONF)) {
+        std::cout << "Initialising directory ..." << std::endl;
+    }
+    else {
+        std::cout << "Reinitialising directory ..." << std::endl;
+    }
     
     try
     {
-        std::cout << "Initialising directory ..." << std::endl;
         rusb::initRolandUSB(directory);
         std::cout << "Directory " << directory.string() << " initialised" << std::endl;
     }
