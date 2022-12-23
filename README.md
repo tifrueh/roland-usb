@@ -71,6 +71,8 @@ An example: if the file `song1.wav` is on the third line, it will be renamed to 
 
 If you want to add more songs after the first initialisation, simply add them to the directory while it is decrypted (meaning in the human-readable state) and initialise it again.
 
+Note, however, that you'll have to reorder the songs after each initialisation.
+
 You can also add the new files to `titles.conf` manually, of course, but reinitialisation is the recommended method nonetheless.
 
 
