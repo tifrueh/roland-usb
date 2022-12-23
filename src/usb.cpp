@@ -35,7 +35,7 @@ void rusb::initRolandUSB(const std::filesystem::path& directory) {
     std::filesystem::path titlesCONF = directory / "titles.conf";
 
     if (std::filesystem::is_regular_file(titlesCONF)) {
-        throw std::invalid_argument(titlesCONF.string() + " exists already");
+        throw std::invalid_argument(directory.string() + " is already initialised");
     }
     
     std::ofstream ofile;
