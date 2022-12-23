@@ -29,7 +29,7 @@ std::vector<std::string> rusb::parseTitlesCSV(const std::filesystem::path& title
 void rusb::initRolandUSB(const std::filesystem::path& directory) {
 
     if (!std::filesystem::is_directory(directory)) {
-        throw std::invalid_argument(directory.string() + " is not a directory");
+        throw std::invalid_argument(directory.string() + " does not exist or is no directory");
     }
 
     std::filesystem::path titlesCONF = directory / "titles.conf";
