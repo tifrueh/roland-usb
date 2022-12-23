@@ -16,16 +16,11 @@
 
 
 #include <iostream>
-#include <filesystem>
 #include "CLI11.hpp"
+#include "nameconversion.hpp"
+#include "usb.hpp"
 #include "subcommands.hpp"
 
 int main(int argc, char** argv) {
-
-    std::filesystem::path workspace = std::filesystem::current_path();
-    std::filesystem::path test = workspace / "testdir";
-
-    scmd::init(test);
-
     return 0;
 }
