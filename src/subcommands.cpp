@@ -41,5 +41,18 @@ void scmd::encrypt(const std::filesystem::path& directory) {
 }
 
 void scmd::decrypt(const std::filesystem::path& directory) {
-    return;
+
+    std::filesystem::path titlesCONF = directory / "titles.conf";
+
+    if (!std::filesystem::is_directory(directory)) {
+        std::cerr << "[ERROR]: " << directory.string() << " does not exist or is no directory"<< std::endl;
+    }
+    else if (!std::filesystem::is_regular_file(titlesCONF)) {
+        std::cerr << "[ERROR]: " << directory.string() << " is not initialised" << std::endl;
+    }
+
+    std::vector<std::string> titles = rusb::parseTitlesCONF(titlesCONF);
+    std::vector<std::string> rolandNames = rnc::createRolandNameVector(1, titles.size());
+
+    rnc::bulkRename(directory, rolandNames, titles);
 }
