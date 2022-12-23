@@ -13,4 +13,14 @@ namespace rusb {
 
     // initialise folder with a titles.conf file
     void initRolandUSB(const std::filesystem::path& directory);
+
+    /* 
+    get the state of a folder
+    0: not initialised
+    1: decrypted
+    2: encrypted
+    3: broken (titles.conf and .titles.conf present)
+    9: no directory
+    */
+   int getRolandState(const std::filesystem::path& directory);
 }

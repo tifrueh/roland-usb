@@ -11,56 +11,101 @@
 
 void scmd::init(const std::filesystem::path& directory) {
 
-    std::filesystem::path titlesCONF = directory / "titles.conf";
+    int rolandState = rusb::getRolandState(directory);
 
-    if (!std::filesystem::is_regular_file(titlesCONF)) {
+    switch (rolandState) {
+
+    case 0:
         std::cout << "Initialising directory ..." << std::endl;
-    }
-    else {
-        std::cout << "Reinitialising directory ..." << std::endl;
-    }
-    
-    try
-    {
         rusb::initRolandUSB(directory);
         std::cout << "Directory " << directory.string() << " initialised" << std::endl;
-    }
-    catch(const std::invalid_argument& e)
-    {
-        std::cerr << "[ERROR]: " << e.what() << std::endl;
+        break;
+
+    case 1:
+        std::cout << "Reinitialising directory ..." << std::endl;
+        rusb::initRolandUSB(directory);
+        std::cout << "Directory " << directory.string() << " initialised" << std::endl;
+        break;
+    
+    case 2:
+        std::cerr << "[ERROR]: " << directory.string() << " is encrypted, initialisation not possible" << std::endl;
+        break;
+
+    case 3:
+        std::cerr << "[ERROR]: " << directory.string() << " is broken (titles.conf and .titles.conf present)" << std::endl;
+        break;
+    
+    case 9:
+        std::cerr << "[ERROR]: " << directory.string() << " is no directory, initialisation not possible" << std::endl;
+        break;
     }
 }
 
 void scmd::encrypt(const std::filesystem::path& directory) {
-    
+
     std::filesystem::path titlesCONF = directory / "titles.conf";
+    std::filesystem::path hiddenTitlesCONF = directory / ".titles.conf";
+    std::vector<std::string> titles;
+    std::vector<std::string> rolandNames;
 
-    if (!std::filesystem::is_directory(directory)) {
-        std::cerr << "[ERROR]: " << directory.string() << " does not exist or is no directory" << std::endl;
+    int rolandState = rusb::getRolandState(directory);
+
+    switch (rolandState) {
+
+    case 0:
+        std::cerr << "[ERROR]: " << directory.string() << " is not initialised, encryption not possible" << std::endl;
+        break;
+
+    case 1:
+        titles = rusb::parseTitlesCONF(titlesCONF);
+        rolandNames = rnc::createRolandNameVector(1, titles.size());
+        rnc::bulkRename(directory, titles, rolandNames);
+        std::filesystem::rename(titlesCONF, hiddenTitlesCONF);
+        break;
+    
+    case 2:
+        std::cerr << "[ERROR]: " << directory.string() << " is already encrypted" << std::endl;
+        break;
+    
+    case 3:
+        std::cerr << "[ERROR]: " << directory.string() << " is broken (titles.conf and .titles.conf present)" << std::endl;
+        break;
+    
+    case 9:
+        std::cerr << "[ERROR]: " << directory.string() << " is no directory, encryption not possible" << std::endl;
     }
-    else if (!std::filesystem::is_regular_file(titlesCONF)) {
-        std::cerr << "[ERROR]: " << directory.string() << " is not initialised" << std::endl;
-    }
-
-    std::vector<std::string> titles = rusb::parseTitlesCONF(titlesCONF);
-    std::vector<std::string> rolandNames = rnc::createRolandNameVector(1, titles.size());
-
-    rnc::bulkRename(directory, titles, rolandNames);
 }
 
 void scmd::decrypt(const std::filesystem::path& directory) {
 
+    std::filesystem::path hiddenTitlesCONF = directory / ".titles.conf";
     std::filesystem::path titlesCONF = directory / "titles.conf";
+    std::vector<std::string> titles;
+    std::vector<std::string> rolandNames;
 
-    if (!std::filesystem::is_directory(directory)) {
-        std::cerr << "[ERROR]: " << directory.string() << " does not exist or is no directory"<< std::endl;
+    int rolandState = rusb::getRolandState(directory);
+
+    switch (rolandState) {
+
+    case 0:
+        std::cerr << "[ERROR]: " << directory.string() << " is not initialised, decryption not possible" << std::endl;
+        break;
+
+    case 1:
+        std::cerr << "[ERROR]: " << directory.string() << " is already decrypted" << std::endl;
+        break;
+    
+    case 2:
+        titles = rusb::parseTitlesCONF(hiddenTitlesCONF);
+        rolandNames = rnc::createRolandNameVector(1, titles.size());
+        rnc::bulkRename(directory, rolandNames, titles);
+        std::filesystem::rename(hiddenTitlesCONF, titlesCONF);
+
+    case 3:
+        std::cerr << "[ERROR]: " << directory.string() << " is broken (titles.conf and .titles.conf present)" << std::endl;
+        break;
+
+    case 9:
+        std::cerr << "[ERROR]: " << directory.string() << " is no directory, decryption not possible" << std::endl;
     }
-    else if (!std::filesystem::is_regular_file(titlesCONF)) {
-        std::cerr << "[ERROR]: " << directory.string() << " is not initialised" << std::endl;
-    }
-
-    std::vector<std::string> titles = rusb::parseTitlesCONF(titlesCONF);
-    std::vector<std::string> rolandNames = rnc::createRolandNameVector(1, titles.size());
-
-    rnc::bulkRename(directory, rolandNames, titles);
 }

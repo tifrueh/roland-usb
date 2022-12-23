@@ -51,3 +51,25 @@ void rusb::initRolandUSB(const std::filesystem::path& directory) {
 
     ofile.close();
 }
+
+int rusb::getRolandState(const std::filesystem::path& directory) {
+
+    std::filesystem::path titlesCONF = directory / "titles.conf";
+    std::filesystem::path hiddenTitlesCONF = directory / ".titles.conf";
+
+    if (!std::filesystem::is_directory(directory)) {
+        return 9;
+    }
+    else if (!std::filesystem::is_regular_file(titlesCONF) && !std::filesystem::is_regular_file(hiddenTitlesCONF)) {
+        return 0;
+    }
+    else if (std::filesystem::is_regular_file(titlesCONF)) {
+        return 1;
+    }
+    else if (std::filesystem::is_regular_file(hiddenTitlesCONF)) {
+        return 2;
+    }
+    else {
+        return 3;
+    }
+}
