@@ -34,8 +34,11 @@ int main(int argc, char** argv) {
 
     CLI::App* scmdInit = app.add_subcommand("init", "Initialise target directory");
     CLI::App* scmdEncrypt = app.add_subcommand("encrypt", "Rename .wav files in target directory to FP-30 readable names");
-    CLI::App* scmdEncrypt = app.add_subcommand("decrypt", "Rename .wav files in target directory to human readable names");
+    CLI::App* scmdDecrypt = app.add_subcommand("decrypt", "Rename .wav files in target directory to human readable names");
     app.require_subcommand(1, 1);
+
+    CLI11_PARSE(app, argc, argv);
+    return 0;
 
     if (*scmdInit) {
         scmd::init(targetDirectory);
@@ -49,7 +52,4 @@ int main(int argc, char** argv) {
     else {
         throw std::logic_error("no valid subcommand given");
     }
-
-    CLI11_PARSE(app, argc, argv);
-    return 0;
 }
