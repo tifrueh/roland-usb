@@ -25,7 +25,7 @@ Currently, there are two ways to install `roland-usb`on your machine:
 The program can be compiled and installed using [GNU make](https://www.gnu.org/software/make/).
 Just download the source and run:
 
-~~~ shell
+~~~ text
 $ make
 # make install
 ~~~
@@ -53,7 +53,7 @@ You can also download the binary for your system (if such a binary should exist)
 
 To use the program with a plugged in USB-drive (you can also use it with a normal folder, the process stays the same), you need to initialise this USB-drive first:
 
-~~~shell
+~~~ text
 $ roland-usb /path/to/usb init
 ~~~
 
@@ -79,12 +79,12 @@ You can also add the new files to titles.conf manually, of course, but reinitial
 After a drive (or a folder, for that matter) is initialised, the other two subcommands `encrypt` and `decrypt` can be used.
 
 To rename all files to a FP-30 readable format, use:
-~~~ shell
+~~~ text
 $ roland-usb /path/to/usb encrypt
 ~~~
 
 To rename all files back to a human readable format, use:
-~~~ shell
+~~~ text
 $ roland-usb /path/to/usb decrypt
 ~~~
 
