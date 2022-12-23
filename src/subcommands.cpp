@@ -34,7 +34,7 @@ void scmd::encrypt(const std::filesystem::path& directory) {
         std::cerr << "[ERROR]: " << directory.string() << " is not initialised";
     }
 
-    std::vector<std::string> titles = rusb::parseTitlesCSV(titlesCONF);
+    std::vector<std::string> titles = rusb::parseTitlesCONF(titlesCONF);
     std::vector<std::string> rolandNames = rnc::createRolandNameVector(1, titles.size());
 
     rnc::bulkRename(directory, titles, rolandNames);

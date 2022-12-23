@@ -8,7 +8,7 @@
 #include <filesystem>
 #include "usb.hpp"
 
-std::vector<std::string> rusb::parseTitlesCSV(const std::filesystem::path& titlesCSVPath) {
+std::vector<std::string> rusb::parseTitlesCONF(const std::filesystem::path& titlesCSVPath) {
     
     std::string line;
 

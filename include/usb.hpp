@@ -8,8 +8,8 @@
 
 namespace rusb {
     
-    // returns a vector containing all the lines of a titles.csv file
-    std::vector<std::string> parseTitlesCSV(const std::filesystem::path& titlesCSVPath);
+    // returns a vector containing all the lines of a titles.conf file
+    std::vector<std::string> parseTitlesCONF(const std::filesystem::path& titlesCSVPath);
 
     // initialise folder with a titles.conf file
     void initRolandUSB(const std::filesystem::path& directory);
