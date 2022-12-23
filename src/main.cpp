@@ -28,13 +28,13 @@ int main(int argc, char** argv) {
 
     app.set_version_flag("-v,--version", VERSION, "Print version and exit");
 
-    std::string sTargetDirectory;
-    app.add_option("-d,--directory", sTargetDirectory, "Target directory")->required();
-
     CLI::App* scmdInit = app.add_subcommand("init", "Initialise target directory");
     CLI::App* scmdEncrypt = app.add_subcommand("encrypt", "Rename .wav files in target directory to FP-30 readable names");
     CLI::App* scmdDecrypt = app.add_subcommand("decrypt", "Rename .wav files in target directory to human readable names");
     app.require_subcommand(1, 1);
+
+    std::string sTargetDirectory;
+    app.add_option("directory", sTargetDirectory, "Target directory")->required();
 
     CLI11_PARSE(app, argc, argv);
 
