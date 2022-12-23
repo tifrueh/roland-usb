@@ -1,16 +1,16 @@
 # roland-usb
 
 This program is designed to manage the renaming of audio files for the Roland FP-30 Digital Piano.
-Audio files on an USB-stick are only readable to the FP-30 if they have specific names, e. g. "R068_001.wav". But names like these are not truly human-readable and changing the order of the songs or adding a new one as the first one can prove to be very tedious when done by hand.
+Audio files on a USB drive are only readable to the FP-30 if they have specific names, e. g. "R068_001.wav". But names like these are not truly human-readable and changing the order of the songs or adding a new one as the first one can prove to be very tedious when done by hand.
 
 
 ## On the FP-30
 
-There are a few things to note when using an USB-drive with the FP-30.
+There are a few things to note when using a USB drive with the FP-30.
 
 1. Before putting any songs on the drive you want to use, you need to format the drive. The procedure for this is described in the manual on page 6.
 
-2. For the FP-30 to be able to play any of the songs on the drive, they must be in the `WAV` format, 44.1 kHz, 16-bit linear. More information on playable formats is give in the manual on page 11.
+2. For the FP-30 to be able to play any of the songs on the drive, they must be in the `WAV` format, 44.1 kHz, 16-bit linear. More information on playable formats is given in the manual on page 11.
 
 [Official owner's manual](https://www.roland.com/global/support/by_product/fp-30/owners_manuals/367f2953-5e00-431c-8fd7-9bc663ce1ec8/)
 
@@ -69,7 +69,7 @@ An example: if the file `song1.wav` is on the third line, it will be renamed to 
 
 ### Adding Songs after Initialisation
 
-If you want to add more songs after the first initialisation, simply add them to the directory while it is decrypted (meaning in the human readable state) and initialise it again.
+If you want to add more songs after the first initialisation, simply add them to the directory while it is decrypted (meaning in the human-readable state) and initialise it again.
 
 You can also add the new files to `titles.conf` manually, of course, but reinitialisation is the recommended method nonetheless.
 
@@ -83,7 +83,7 @@ To rename all files to a FP-30 readable format, use:
 $ roland-usb /path/to/usb encrypt
 ~~~
 
-To rename all files back to a human readable format, use:
+To rename all files back to a human-readable format, use:
 ~~~ text
 $ roland-usb /path/to/usb decrypt
 ~~~
@@ -93,4 +93,4 @@ $ roland-usb /path/to/usb decrypt
 
 As soon as all the files are renamed to a FP-30 readable name, `titles.conf` is renamed to `.titles.conf`, hiding it on UNIX systems.
 
-This is not without reason: it is **IMPERATIVE** that you **DO NOT** modify `.titles.conf` **EVER**. If you were to do that, `roland-usb` would have no idea (or the wrong idea) on how to rename the files back to a human readable name.
+This is not without reason: it is **IMPERATIVE** that you **DO NOT** modify `.titles.conf` **EVER**. If you were to do that, `roland-usb` would have no idea (or the wrong idea) on how to rename the files back to a human-readable name.
