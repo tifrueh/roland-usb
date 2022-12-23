@@ -28,10 +28,10 @@ void scmd::encrypt(const std::filesystem::path& directory) {
     std::filesystem::path titlesCONF = directory / "titles.conf";
 
     if (!std::filesystem::is_directory(directory)) {
-        std::cerr << "[ERROR]: " << directory.string() << " does not exist or is no directory"<< std::endl;
+        std::cerr << "[ERROR]: " << directory.string() << " does not exist or is no directory" << std::endl;
     }
     else if (!std::filesystem::is_regular_file(titlesCONF)) {
-        std::cerr << "[ERROR]: " << directory.string() << " is not initialised";
+        std::cerr << "[ERROR]: " << directory.string() << " is not initialised" << std::endl;
     }
 
     std::vector<std::string> titles = rusb::parseTitlesCONF(titlesCONF);
