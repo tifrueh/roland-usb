@@ -18,7 +18,9 @@ std::vector<std::string> rusb::parseTitlesCONF(const std::filesystem::path& titl
     std::vector<std::string> titlesVector;
 
     while (std::getline(ifile, line)) {
+        if (line != "") {
             titlesVector.push_back(line);
+        }
     }
 
     ifile.close();
