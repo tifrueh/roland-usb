@@ -10,7 +10,7 @@ override CPPFLAGS += -I./include
 override CXXFLAGS += -std=c++20
 
 DESTDIR ?= /usr/local
-DESTDIR_BIN ?= $(DESTDIR)/bin
+DESTDIR_BIN = $(DESTDIR)/bin
 
 TARGET = roland-usb
 

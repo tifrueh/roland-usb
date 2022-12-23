@@ -18,7 +18,9 @@ std::vector<std::string> rusb::parseTitlesCONF(const std::filesystem::path& titl
     std::vector<std::string> titlesVector;
 
     while (std::getline(ifile, line)) {
+        if (line != "") {
             titlesVector.push_back(line);
+        }
     }
 
     ifile.close();
@@ -34,12 +36,8 @@ void rusb::initRolandUSB(const std::filesystem::path& directory) {
 
     std::filesystem::path titlesCONF = directory / "titles.conf";
 
-    if (std::filesystem::is_regular_file(titlesCONF)) {
-        throw std::invalid_argument(directory.string() + " is already initialised");
-    }
-    
     std::ofstream ofile;
-    ofile.open(titlesCONF);
+    ofile.open(titlesCONF, std::ios::trunc);
 
     for (std::filesystem::path file : std::filesystem::directory_iterator(directory)) {
 
@@ -52,4 +50,26 @@ void rusb::initRolandUSB(const std::filesystem::path& directory) {
     }
 
     ofile.close();
+}
+
+int rusb::getRolandState(const std::filesystem::path& directory) {
+
+    std::filesystem::path titlesCONF = directory / "titles.conf";
+    std::filesystem::path hiddenTitlesCONF = directory / ".titles.conf";
+
+    if (!std::filesystem::is_directory(directory)) {
+        return 9;
+    }
+    else if (!std::filesystem::is_regular_file(titlesCONF) && !std::filesystem::is_regular_file(hiddenTitlesCONF)) {
+        return 0;
+    }
+    else if (std::filesystem::is_regular_file(titlesCONF)) {
+        return 1;
+    }
+    else if (std::filesystem::is_regular_file(hiddenTitlesCONF)) {
+        return 2;
+    }
+    else {
+        return 3;
+    }
 }
