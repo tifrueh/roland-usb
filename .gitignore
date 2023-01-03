@@ -39,8 +39,9 @@
 # vscode
 .vscode
 
-# executable
-roland-usb
+# build directory
+build/*
+!build/.gitignore
 
 # "mock-usb-directory" for testing
 testdir

@@ -1,43 +1,41 @@
-SRCS = main.cpp nameconversion.cpp usb.cpp subcommands.cpp
-OBJS = $(subst .cpp,.o,$(SRCS))
+SHELL = /bin/sh
 
 CXX ?= g++
-CPPFLAGS ?=
-CXXFLAGS ?=
-LDFLAGS ?=
 
 override CPPFLAGS += -I./include
-override CXXFLAGS += -std=c++20
+override CXXFLAGS += -g -std=c++17 -Wall
+override LDFLAGS += -g
 
-DESTDIR ?= /usr/local
-DESTDIR_BIN = $(DESTDIR)/bin
+SRCDIR ?= ./src
+BUILDDIR ?= ./build
 
-TARGET = roland-usb
+LOCAL_BIN = roland-usb
+LOCAL_BIN_PATH = $(BUILDDIR)/$(LOCAL_BIN)
+
+PREFIX ?= /usr/local
+BINDIR = $(PREFIX)/bin
+
+DEST_BINDIR = $(DESTDIR)$(BINDIR)
+DEST_BIN_PATH = $(DEST_BINDIR)/$(LOCAL_BIN)
 
 MAKE_OBJ = $(CXX) $(CPPFLAGS) $(CXXFLAGS) -c
+MAKE_LINK = $(CXX) $(LDFLAGS) -o $(LOCAL_BIN_PATH)
 
-ifeq ($(LDFLAGS), )
-	MAKE_LINK = $(CXX) -o $(TARGET)
-else
-	MAKE_LINK = $(CXX) $(LDFLAGS) -o $(TARGET)
-endif
+SRCS = $(SRCDIR)/main.cpp \
+       $(SRCDIR)/nameconversion.cpp \
+	   $(SRCDIR)/subcommands.cpp \
+	   $(SRCDIR)/usb.cpp \
 
-all : $(TARGET)
+OBJS = $(subst $(SRCDIR),$(BUILDDIR),$(subst .cpp,.o,$(SRCS)))
 
-$(TARGET) : $(OBJS)
+
+all : $(LOCAL_BIN_PATH)
+
+$(LOCAL_BIN_PATH) : $(OBJS)
 	$(MAKE_LINK) $(OBJS)
 
-main.o : src/main.cpp
-	$(MAKE_OBJ) src/main.cpp
-
-nameconversion.o : src/nameconversion.cpp
-	$(MAKE_OBJ) src/nameconversion.cpp
-
-usb.o : src/usb.cpp
-	$(MAKE_OBJ) src/usb.cpp
-
-subcommands.o : src/subcommands.cpp
-	$(MAKE_OBJ) src/subcommands.cpp
+$(BUILDDIR)/%.o : $(SRCDIR)/%.cpp
+	$(MAKE_OBJ) $(SRCDIR)/$*.cpp -o $@
 
 
 .PHONY : clean distclean install uninstall
@@ -46,12 +44,13 @@ clean :
 	-rm $(OBJS)
 
 distclean : 
-	-rm $(TARGET)
+	-rm $(OBJS)
+	-rm $(LOCAL_BIN_PATH)
 
-install : $(TARGET)
-	@install -d $(DESTDIR_BIN)
-	@install $(TARGET) $(DESTDIR_BIN)
-	@echo "$(TARGET) was installed to $(DESTDIR)"
+install : all
+	@mkdir -p $(DEST_BINDIR)
+	@cp $(LOCAL_BIN_PATH) $(DEST_BINDIR)
+	@echo "$(LOCAL_BIN) was installed to $(DEST_BINDIR)"
 
 uninstall :
-	@if [ -f $(DESTDIR_BIN)/$(TARGET) ]; then rm $(DESTDIR_BIN)/$(TARGET); else echo "ERROR: $(TARGET) not installed at location: \"$(DESTDIR_BIN)\" --> please uninstall manually"; fi
+	@if [ -f $(DEST_BIN_PATH) ]; then rm $(DEST_BIN_PATH) && echo "$(DEST_BIN_PATH) was deleted"; else echo "ERROR: $(LOCAL_BIN) not installed at location: \"$(DEST_BIN_PATH)\" --> please uninstall manually"; fi
