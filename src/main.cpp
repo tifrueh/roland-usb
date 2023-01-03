@@ -15,11 +15,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#define VERSION "1.0.0"
+#define VERSION "1.0.1"
 
 #include <filesystem>
 #include <string>
-#include "CLI11.hpp"
+#include <CLI/CLI.hpp>
 #include "subcommands.hpp"
 
 int main(int argc, char** argv) {
