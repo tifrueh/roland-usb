@@ -20,7 +20,7 @@ There are a few things to note when using a USB drive with the FP-30.
 Currently, there are two ways to install `roland-usb`on your machine:
 
 
-### 1. Compile and Install it Yourself (Recommended)
+### 1. Compile and Install it Yourself
 
 Before compilation, you need to install the following dependency:
 
@@ -34,20 +34,10 @@ $ make
 # make install
 ~~~
 
-The process can be influenced using the following variables:
 
-~~~ text
-CXX          The compiler to be used (default is g++)
-CPPFLAGS     Preprocessor flags
-CXXFLAGS     Compiler flags
-LDFLAGS      Linker flags
-DESTDIR      Installation directory (default is /usr/local -> installation in /user/local/bin)
-~~~
+### 2. Download Package
 
-
-### 2. Download Binary and Install Manually
-
-You can also download the binary for your system (if such a binary should exist) from the [latest release](https://github.com/tifrueh/roland-usb/releases/latest). You'll have to take care of the installation yourself, however.
+You can also download the appropriate package for your system (if such a package should exist) from the [latest release](https://github.com/tifrueh/roland-usb/releases/latest). You'll have to take care of the installation yourself, however.
 
 
 ## Usage
