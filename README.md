@@ -22,7 +22,11 @@ Currently, there are two ways to install `roland-usb`on your machine:
 
 ### 1. Compile and Install it Yourself (Recommended)
 
-The program can be compiled and installed using [GNU make](https://www.gnu.org/software/make/).
+Before compilation, you need to install the following dependency:
+
+- [cli11](https://github.com/CLIUtils/CLI11) 
+
+Then, program can be compiled and installed using [GNU make](https://www.gnu.org/software/make/).
 Just download the source and run:
 
 ~~~ text

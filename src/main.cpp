@@ -19,7 +19,7 @@
 
 #include <filesystem>
 #include <string>
-#include "CLI11.hpp"
+#include <CLI/CLI.hpp>
 #include "subcommands.hpp"
 
 int main(int argc, char** argv) {
