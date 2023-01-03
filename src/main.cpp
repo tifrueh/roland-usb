@@ -15,7 +15,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#define VERSION "1.0.1"
+#define VERSION "1.0.2-dev"
 
 #include <filesystem>
 #include <string>
